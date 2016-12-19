@@ -1,5 +1,7 @@
 package boku.codingtest.tax;
 
-public class Dummy {
+public enum TaxType {
 
+	SALES;
+	
 }
