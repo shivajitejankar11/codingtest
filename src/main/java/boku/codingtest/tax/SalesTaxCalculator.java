@@ -43,12 +43,15 @@ public class SalesTaxCalculator implements TaxCalculatorInterface{
 	@Override
 	public BigDecimal calculateTaxRate(ProductInterface product) {
 		
+		// Initialize with 0
 		BigDecimal taxRate = new BigDecimal("0.00");
 		
+		// If product is not in exempt category then add Non Exempt tax rate
 		if(!product.isExempted()){
 			taxRate = taxRate.add(SALES_TAX_PERCENTAGE_NON_EXEMPT);
 		}
 		
+		// If product is imported then add Imported product tax rate regardless of product is exempted domestically or not
 		if(product.isImported()){
 			taxRate = taxRate.add(SALES_TAX_PERCENTAGE_ADDITIONAL_IMPORTED);
 		}

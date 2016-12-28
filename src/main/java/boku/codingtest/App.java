@@ -32,12 +32,19 @@ public class App {
       throw new RuntimeException("Please enter input file directory path");
     }
     
+    // Build shopping carts from each of the input file available in provided input directory
     List<ShoppingCartInterface> listOfShoppingCarts = ShoppingCartHelper.buildShoppingCarts(args[0]); 
     
+    // Iterate over all built carts and print receipt for each of them
     int index = 1;
     for(ShoppingCartInterface shoppingCart : listOfShoppingCarts){
     	System.out.println("\nOutput : " + index++ + "\n");
     	shoppingCart.printReceipt(PrintType.CONSOLE);
+    }
+    
+    // If the directory is empty and no shopping cart has been built then print the message.
+    if(listOfShoppingCarts == null || listOfShoppingCarts.size() == 0){
+    	System.out.println("No receipt to print at this time.");
     }
     
     appLogger.debug("Receipt Print App Ends");

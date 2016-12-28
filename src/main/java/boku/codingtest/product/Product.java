@@ -81,10 +81,12 @@ public class Product implements ProductInterface {
 	}
 
 	public void calculateSalesTax(){
+		// Calculate sales tax from the provided tax calculator and set the sales tax property of the current product
 		setSalesTax(taxCalculator.calculateTax(this));
 	}
 	
 	public BigDecimal getCostAfterTax() {
+		// Add sales tax in cost before tax and return Total Cost after tax
 		return getCostBeforeTax().add(getSalesTax());
 	}
 	

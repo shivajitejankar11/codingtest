@@ -6,4 +6,6 @@ public interface PrinterInterface {
 
 	public void print(ShoppingCartInterface shoppingCart);
 	
+	public String getPrintData(ShoppingCartInterface shoppingCart);
+	
 }

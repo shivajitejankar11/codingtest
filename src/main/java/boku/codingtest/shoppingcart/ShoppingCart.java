@@ -29,12 +29,14 @@ public class ShoppingCart implements ShoppingCartInterface {
 
 	@Override
 	public void addProductToCart(Product product) {
+		// Calculate sales tax and then add product to the cart
 		product.calculateSalesTax();
 		listOfProducts.add(product);
 	}
 
 	@Override
 	public BigDecimal getTotalCartAmout() {
+		// Iterate through each product available in cart and provide sum of cost before tax amount.
 		BigDecimal totalCartAmount = new BigDecimal("0.00");
 		for(Product product : listOfProducts){
 			totalCartAmount = totalCartAmount.add(product.getCostAfterTax());
@@ -44,6 +46,7 @@ public class ShoppingCart implements ShoppingCartInterface {
 
 	@Override
 	public BigDecimal getTotalSalesTax() {
+		// Iterate through each product available in cart and provide sum of sales tax.
 		BigDecimal totalSalesTax = new BigDecimal("0.00");
 		for(Product product : listOfProducts){
 			totalSalesTax = totalSalesTax.add(product.getSalesTax());
@@ -54,6 +57,7 @@ public class ShoppingCart implements ShoppingCartInterface {
 
 	@Override
 	public void printReceipt(PrintType printType) {
+		// Get the printer and print receipt
 		PrinterFactory.getPrinter(printType).print(this);
 	}
 

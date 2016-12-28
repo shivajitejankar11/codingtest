@@ -1,14 +1,15 @@
 package boku.codingtest.product;
 
 
+
 import boku.codingtest.product.ProductDefinition.ProductType;
 import boku.codingtest.util.CodingTestUtil;
-
 
 import java.math.BigDecimal;
 import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 
 /**
  * Following class will act as an helper class to perform product related activities.
@@ -38,7 +39,7 @@ public class ProductHelper {
 		
 		int quantity = -1;
 		
-		// Get the first 
+		// Get the digits from the starting character of the line until the first space character is encountered
 		String regEx = "(\\d+)\\s";
 		
 		Matcher matcher = CodingTestUtil.getRegExMatcher(rawProductData, regEx);
@@ -58,7 +59,7 @@ public class ProductHelper {
 		
 		String name = "";
 		
-		//TODO Convert into constant/property
+		// Get the value between first space and word 'at'.
 		String regEx = "\\s(.+)at.+";
 		
 		Matcher matcher = CodingTestUtil.getRegExMatcher(rawProductData, regEx);
@@ -78,7 +79,7 @@ public class ProductHelper {
 		
 		BigDecimal totalProce = null;
 		
-		//TODO Convert into constant/property
+		//Get the digits and decimal points between space character after 'at' word until the end of string
 		String regEx = "at\\s(\\d+\\.*\\d*)";
 		
 		Matcher matcher = CodingTestUtil.getRegExMatcher(rawProductData, regEx);
@@ -87,6 +88,18 @@ public class ProductHelper {
 		}
 		
 		return totalProce;
+	}
+	
+	/**
+	 * Following method will parse the provided string and return the imported indicator from the provided input string.
+	 * @param rawProductData input string
+	 * @return Indicator if product is imported or not
+	 */
+	public static boolean parseIsImported(String rawProductData){
+		
+		// If input string contains a word imported
+		String regEx = ".+(?i)(imported).+";
+		return Pattern.matches(regEx, rawProductData);
 	}
 	
 	/**
@@ -115,18 +128,6 @@ public class ProductHelper {
 		
 		return productType;
 		
-	}
-	
-	/**
-	 * Following method will parse the provided string and return the imported indicator from the provided input string.
-	 * @param rawProductData input string
-	 * @return Indicator if product is imported or not
-	 */
-	public static boolean parseIsImported(String rawProductData){
-		
-		//TODO Convert into constant/property
-		String regEx = ".+(?i)(imported).+";
-		return Pattern.matches(regEx, rawProductData);
 	}
 	
 }

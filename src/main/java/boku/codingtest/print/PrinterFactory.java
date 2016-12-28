@@ -11,6 +11,7 @@ public class PrinterFactory {
 	 */
 	public static PrinterInterface getPrinter(PrintType printType){
 		PrinterInterface printInterface = null;
+		
 		if(printType == PrintType.CONSOLE){
 			printInterface = new ConsolePrinter();
 		}

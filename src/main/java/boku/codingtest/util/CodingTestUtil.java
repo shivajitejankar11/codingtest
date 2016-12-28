@@ -26,8 +26,7 @@ public class CodingTestUtil {
 	 * @return Rounded value
 	 */
 	public static BigDecimal roundToNearestIncrement(BigDecimal value, BigDecimal increment, RoundingMode roundingMode) {
-		if (increment.signum() == 0) {
-			// 0 increment does not make much sense, but prevent division by 0
+		if (increment.signum() == 0) { // Prevent division by 0
 			return value;
 		} else {
 			BigDecimal divided = value.divide(increment, 0, roundingMode);
